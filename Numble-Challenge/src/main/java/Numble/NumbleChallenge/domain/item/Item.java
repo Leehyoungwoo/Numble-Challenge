@@ -1,8 +1,9 @@
 package Numble.NumbleChallenge.domain.item;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-
+@AllArgsConstructor
 @Builder
 public class Item {
     private Long id;

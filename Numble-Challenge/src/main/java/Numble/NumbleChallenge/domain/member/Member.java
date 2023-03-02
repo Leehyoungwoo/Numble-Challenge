@@ -1,7 +1,9 @@
 package Numble.NumbleChallenge.domain.member;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 
+@AllArgsConstructor
 @Builder
 public class Member {
 
