@@ -1,6 +1,9 @@
 package Numble.NumbleChallenge.domain.item;
 
 
+import lombok.Builder;
+
+@Builder
 public class Item {
     private Long id;
     private String ItemName;
@@ -13,22 +16,6 @@ public class Item {
     public Item(String itemName, Integer price, Integer quantity) {
         ItemName = itemName;
         this.price = price;
-        this.quantity = quantity;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setItemName(String itemName) {
-        ItemName = itemName;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 

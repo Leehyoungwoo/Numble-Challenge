@@ -14,7 +14,7 @@ public class ItemRepository {
     private static Long sequence =0L;
 
     public Item save(Item item) {
-        item.setId(++sequence);
+        item.builder().id(++sequence);
         itemStore.put(item.getId(), item);
         return item;
     }
@@ -29,9 +29,9 @@ public class ItemRepository {
 
     public void updateItem(Long itemId, Item updateParam) {
         Item findItem = findById(itemId);
-        findItem.setItemName(updateParam.getItemName());
-        findItem.setPrice(updateParam.getPrice());
-        findItem.setQuantity(updateParam.getQuantity());
+        findItem.builder().ItemName(updateParam.getItemName());
+        findItem.builder().price(updateParam.getPrice());
+        findItem.builder().quantity(updateParam.getQuantity());
     }
 
     public void clearItemStore() {
