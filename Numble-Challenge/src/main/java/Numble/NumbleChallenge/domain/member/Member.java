@@ -4,7 +4,7 @@ public class Member {
 
     private Long id;
     private String userId;
-    private String passWord;
+    private String password;
     private String nickName;
     private String userName;
     private Long phoneNumber;
@@ -12,20 +12,24 @@ public class Member {
     public Member() {
     }
 
-    public Member(String userId, String passWord, String nickName, String userName, Long phoneNumber) {
+    public Member(String userId, String password, String nickName, String userName, Long phoneNumber) {
         this.userId = userId;
-        this.passWord = passWord;
+        this.password = password;
         this.nickName = nickName;
         this.userName = userName;
         this.phoneNumber = phoneNumber;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setNickName(String nickName) {
@@ -40,12 +44,16 @@ public class Member {
         this.phoneNumber = phoneNumber;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getUserId() {
         return userId;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getPassword() {
+        return password;
     }
 
     public Long getPhoneNumber() {
