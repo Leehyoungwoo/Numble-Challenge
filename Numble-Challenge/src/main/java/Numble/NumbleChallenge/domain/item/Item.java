@@ -22,6 +22,10 @@ public class Item {
         return id;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
     public Item update(Long id, String name, Integer price, Integer quantity) {
         return new Item(id, name, price, quantity);
     }
