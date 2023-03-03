@@ -1,8 +1,11 @@
 package Numble.NumbleChallenge.domain.order;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Repository
 public class MemoryOrderRepository implements OrderRepository{
 
     private final static Map<Long, Order> orderStore = new HashMap<>();
