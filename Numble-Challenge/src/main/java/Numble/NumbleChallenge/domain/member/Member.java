@@ -2,9 +2,11 @@ package Numble.NumbleChallenge.domain.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @Builder
+@NoArgsConstructor
 public class Member {
 
     private Long id;
@@ -14,32 +16,7 @@ public class Member {
     private String username;
     private Long phoneNumber;
 
-    public Member() {
-    }
-
-    public Member(String userId, String password, String nickname, String username, Long phoneNumber) {
-        this.userId = userId;
-        this.password = password;
-        this.nickname = nickname;
-        this.username = username;
-        this.phoneNumber = phoneNumber;
-    }
-
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public Long getPhoneNumber() {
-        return phoneNumber;
+    public void setId(Long id) {
+        this.id = id;
     }
 }

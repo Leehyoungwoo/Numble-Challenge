@@ -1,7 +1,10 @@
 package Numble.NumbleChallenge.domain.item;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.*;
 
+@Repository
 public class MemoryItemRepository implements ItemRepository {
 
     private final static Map<Long, Item> itemStore = new HashMap<>();
