@@ -1,4 +1,6 @@
-package Numble.NumbleChallenge.domain.member;
+package numble.challenge.member.repository;
+
+import numble.challenge.domain.model.entity.Member;
 
 import java.util.List;
 import java.util.Optional;
