@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: local
+    include:
+      - db
+
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        default_batch_fetch_size: 500
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
