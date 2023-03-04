@@ -1,5 +1,6 @@
-package Numble.NumbleChallenge.domain.member;
+package numble.challenge.member.repository;
 
+import numble.challenge.domain.model.entity.Member;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
