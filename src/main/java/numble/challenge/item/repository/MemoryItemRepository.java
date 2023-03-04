@@ -1,33 +1,33 @@
-package Numble.NumbleChallenge.domain.item;
+package numble.challenge.item.repository;
 
-import org.springframework.stereotype.Repository;
+import numble.challenge.domain.model.entity.Item;
 
 import java.util.*;
 
-@Repository
-public class MemoryItemRepository implements ItemRepository {
+public class MemoryItemRepository {
 
     private final static Map<Long, Item> itemStore = new HashMap<>();
     private static Long sequence = 0L;
 
-    @Override
     public Item save(Item item) {
         item.setId(++sequence);
         itemStore.put(item.getId(), item);
         return item;
     }
 
-    @Override
     public Optional<Item> findById(Long id) {
         return Optional.ofNullable(itemStore.get(id));
     }
 
-    @Override
     public List<Item> findAll() {
         return new ArrayList<>(itemStore.values());
     }
 
     public void storeClear() {
         itemStore.clear();
+    }
+
+    private static synchronized void autoIncrement() {
+        MemoryItemRepository.sequence++;
     }
 }
