@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface MemberService {
 
-    Long join(Member member);
+    void join(Member member);
 
     void withdraw(Long memberId);
 
