@@ -60,4 +60,11 @@ public class Member {
             throw new IllegalArgumentException("전화번호가 올바른 형식이 아닙니다.");
         }
     }
+
+    public void update(String name, String email, String nickname, String phone) {
+        this.name = name;
+        this.email = email;
+        this.nickname = nickname;
+        this.phone = phone;
+    }
 }
