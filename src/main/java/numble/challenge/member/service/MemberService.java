@@ -11,7 +11,7 @@ public interface MemberService {
 
     void withdraw(Long memberId);
 
-    List<Item> findOrderItem(Long memberId);
+    List<Item> findItemByMember(Long memberId);
 
     void updateMember(Long memberId, String name, String email, String nickname, String phone);
 
