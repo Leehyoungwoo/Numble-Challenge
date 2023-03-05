@@ -5,25 +5,21 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository
-public class MemoryMemberRepository implements MemberRepository {
+public class MemoryMemberRepository {
 
     private static final Map<Long, Member> memberStore = new HashMap<>();
     private static Long sequence = 0L;
 
-    @Override
     public Member save(Member member) {
         member.setId(++sequence);
         memberStore.put(sequence, member);
         return member;
     }
 
-    @Override
     public Optional<Member> findById(Long id) {
         return Optional.ofNullable(memberStore.get(id));
     }
 
-    @Override
     public List<Member> findAll() {
         return new ArrayList<>(memberStore.values());
     }
