@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import numble.challenge.domain.converter.PasswordConverter;
+import numble.challenge.member.controller.dto.MemberSaveDto;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -66,5 +68,16 @@ public class Member {
         this.email = email;
         this.nickname = nickname;
         this.phone = phone;
+    }
+
+    public static Member toEntity(MemberSaveDto memberSaveDto) {
+        return Member.builder()
+                .userId(memberSaveDto.getUserId())
+                .password(memberSaveDto.getPassword())
+                .name(memberSaveDto.getName())
+                .email(memberSaveDto.getEmail())
+                .nickname(memberSaveDto.getNickname())
+                .phone(memberSaveDto.getPhone())
+                .build();
     }
 }
