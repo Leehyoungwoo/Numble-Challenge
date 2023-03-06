@@ -25,7 +25,7 @@ public class MemberSignUpController {
     @PostMapping("/api/member")
     public String signUp(@RequestBody MemberSaveDto memberSaveDto) {
         memberService.join(Member.toEntity(memberSaveDto));
-        return "log-in-form";
+        return "redirect: log-in-form";
     }
 
 }
