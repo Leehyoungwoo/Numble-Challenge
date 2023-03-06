@@ -3,6 +3,8 @@ package numble.challenge.member.service;
 import numble.challenge.domain.model.entity.Item;
 import numble.challenge.domain.model.entity.Member;
 import numble.challenge.domain.model.entity.Order;
+import numble.challenge.member.controller.dto.MemberSaveDto;
+import numble.challenge.member.controller.dto.MemberUpdateDto;
 import numble.challenge.member.repository.MemberRepository;
 import numble.challenge.order.repository.OrderRepository;
 import org.springframework.stereotype.Service;
@@ -46,11 +48,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void updateMember(Long memberId, String name, String email, String nickname, String phone) {
-        Optional<Member> member = memberRepository.findById(memberId);
-        member.ifPresent(m -> {
-            m.update(name, email, nickname, phone);
-        });
+    public void updateMember(Long memberId, MemberUpdateDto memberUpdateDto) {
+       Member member = memberRepository.findById(memberId)
+               .orElseThrow(()-> new IllegalArgumentException("존재하지 않는 회원입니다."));
+
+       member.update(memberUpdateDto);
     }
 
     private void validateDuplicateMember(Member member) {
