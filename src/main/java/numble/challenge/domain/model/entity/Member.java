@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import numble.challenge.domain.converter.PasswordConverter;
+import numble.challenge.member.controller.dto.MemberSaveDto;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -59,5 +61,23 @@ public class Member {
         if (this.phone.length() != 11) {
             throw new IllegalArgumentException("전화번호가 올바른 형식이 아닙니다.");
         }
+    }
+
+    public void update(String name, String email, String nickname, String phone) {
+        this.name = name;
+        this.email = email;
+        this.nickname = nickname;
+        this.phone = phone;
+    }
+
+    public static Member toEntity(MemberSaveDto memberSaveDto) {
+        return Member.builder()
+                .userId(memberSaveDto.getUserId())
+                .password(memberSaveDto.getPassword())
+                .name(memberSaveDto.getName())
+                .email(memberSaveDto.getEmail())
+                .nickname(memberSaveDto.getNickname())
+                .phone(memberSaveDto.getPhone())
+                .build();
     }
 }
