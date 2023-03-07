@@ -48,4 +48,10 @@ public class MemberController {
         memberService.withdraw(id);
         return "redirect:/";
     }
+
+    @PostMapping("/member/{id}/items")
+    public String findItemByMember(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("items", memberService.findItemByMember(id));
+        return "member-itemList";
+    }
 }
