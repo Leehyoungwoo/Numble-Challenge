@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
+    @Query("select i from Item i where i.name like %:name%")
     List<Item> findByNameContaining(String name);
 
 }
