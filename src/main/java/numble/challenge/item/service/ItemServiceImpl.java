@@ -52,8 +52,10 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional(readOnly = false)
     @Override
-    public void getItemDetail() {
-
+    public ItemResponseDto getItemDetail(Long itemId) {
+        Item item = itemRepository.findById(itemId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상품입니다."));
+        return converToItemResponseDto(item);   //@Lob description 변수  아이템 필드가 사용된 곳에 추가...
     }
 
     @Transactional(readOnly = false)

@@ -17,7 +17,7 @@ public interface ItemService {
 
     List<ItemResponseDto> findAllItem();
 
-    void getItemDetail();
+    ItemResponseDto getItemDetail(Long itemId);
 
     void searchItem();
 
