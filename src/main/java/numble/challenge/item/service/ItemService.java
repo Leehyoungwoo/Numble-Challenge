@@ -2,6 +2,7 @@ package numble.challenge.item.service;
 
 import numble.challenge.domain.model.entity.Item;
 import numble.challenge.item.controller.dto.ItemRequestUpdateDto;
+import numble.challenge.item.controller.dto.ItemResponseDto;
 
 import java.util.List;
 
@@ -12,9 +13,9 @@ public interface ItemService {
 
     void update(Long itemId, ItemRequestUpdateDto itemRequestUpdateDto);
 
-    void delete();
+    void delete(Long itemId);
 
-    List<Item> findAllItem();
+    List<ItemResponseDto> findAllItem();
 
     void getItemDetail();
 
