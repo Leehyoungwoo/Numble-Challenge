@@ -60,7 +60,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Transactional(readOnly = false)
-    private void validateDuplicateMember(Member member) {
+    public void validateDuplicateMember(Member member) {
         Optional<Member> result = memberRepository.findByPhone(member.getPhone());
         result.ifPresent(m -> {
             throw new IllegalArgumentException("이미 존재하는 회원입니다.");
