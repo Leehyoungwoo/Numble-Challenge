@@ -14,6 +14,8 @@ import javax.validation.constraints.Min;
 @Builder
 public class ItemRequestUpdateDto {
 
+    private Long id;
+
     @NotNull
     private String name;
 
