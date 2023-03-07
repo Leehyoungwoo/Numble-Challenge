@@ -43,12 +43,14 @@ public class Member {
 
     @NotNull
     @Email
+    @Column(unique = true)
     private String email;
 
     @NotNull
     private String nickname;
 
     @NotNull
+    @Column(unique = true)
     private String phone;
 
     public void setId(Long id) {
