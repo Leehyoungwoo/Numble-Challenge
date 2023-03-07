@@ -12,6 +12,6 @@ import java.util.Optional;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    @Query("select m from Member m where m.name = :name")
-    Optional<Member> findByName(@Param("name") String name);
+    @Query("select m from Member m where m.phone = :phone")
+    Optional<Member> findByPhone(@Param("phone") String phone);
 }
