@@ -60,8 +60,11 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional(readOnly = false)
     @Override
-    public void searchItem() {
-
+    public List<ItemResponseDto> searchItem(String itemName) {
+        List<Item> items = itemRepository.findByNameContaining(itemName);
+        return items.stream()
+                .map(this::converToItemResponseDto)
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = false)

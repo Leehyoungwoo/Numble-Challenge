@@ -19,7 +19,7 @@ public interface ItemService {
 
     ItemResponseDto getItemDetail(Long itemId);
 
-    void searchItem();
+    List<ItemResponseDto> searchItem(String itemName);
 
     void orderItem();
 }
