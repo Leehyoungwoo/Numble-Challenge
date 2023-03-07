@@ -26,17 +26,20 @@ public class MemberServiceImpl implements MemberService {
         this.orderRepository = orderRepository;
     }
 
+    @Transactional(readOnly = false)
     @Override
     public void join(Member member) {
         validateDuplicateMember(member);
         memberRepository.save(member);
     }
 
+    @Transactional(readOnly = false)
     @Override
     public void withdraw(Long memberId) {
         memberRepository.deleteById(memberId);
     }
 
+    @Transactional(readOnly = false)
     @Override
     public List<Item> findItemByMember(Long memberId) {
         List<Order> orders = orderRepository.findByMemberId(memberId);
@@ -47,6 +50,7 @@ public class MemberServiceImpl implements MemberService {
         return orderItems;
     }
 
+    @Transactional(readOnly = false)
     @Override
     public void updateMember(Long memberId, MemberUpdateDto memberUpdateDto) {
        Member member = memberRepository.findById(memberId)
@@ -55,8 +59,9 @@ public class MemberServiceImpl implements MemberService {
        member.update(memberUpdateDto);
     }
 
+    @Transactional(readOnly = false)
     private void validateDuplicateMember(Member member) {
-        Optional<Member> result = memberRepository.findByName(member.getName());
+        Optional<Member> result = memberRepository.findByPhone(member.getPhone());
         result.ifPresent(m -> {
             throw new IllegalArgumentException("이미 존재하는 회원입니다.");
         });
