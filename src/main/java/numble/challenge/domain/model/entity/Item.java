@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import numble.challenge.item.controller.dto.ItemRequestSaveDto;
+import numble.challenge.item.controller.dto.ItemRequestUpdateDto;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -42,10 +43,10 @@ public class Item {
                 .build();
     }
 
-    public void update(Item item) {
-        this.name = item.getName();
-        this.price = item.getPrice();
-        this.quantity = item.getQuantity();
+    public void update(ItemRequestUpdateDto itemRequestUpdateDto) {
+        this.name = itemRequestUpdateDto.getName();
+        this.price = itemRequestUpdateDto.getPrice();
+        this.quantity = itemRequestUpdateDto.getQuantity();
     }
 
     public void sell() {
