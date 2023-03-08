@@ -1,6 +1,7 @@
 package numble.challenge.item.controller;
 
 import lombok.RequiredArgsConstructor;
+import numble.challenge.domain.exception.NotEnoughStockException;
 import numble.challenge.domain.model.entity.Item;
 import numble.challenge.item.controller.dto.ItemRequestSaveDto;
 import numble.challenge.item.controller.dto.ItemRequestUpdateDto;
@@ -70,5 +71,22 @@ public class ItemController {
         List<ItemResponseDto> itemResponseDtos = itemService.searchItem(itemName);
         model.addAttribute("items", itemResponseDtos);
         return "searchItem-List";
+    }
+
+    @PostMapping("/api/item/order")
+    public String orderItem(
+            @RequestParam("itemId") Long itemId,
+            @RequestParam("memberId") Long memberId,
+            @RequestParam("count") int count,
+            Model model) {
+        try {
+            itemService.orderItem(itemId, memberId, count);
+        } catch (NotEnoughStockException e ) {
+            model.addAttribute("error", e.getMessage());
+            return "order-form";
+        }
+
+        model.addAttribute("message", "주문이 완료되었습니다.");
+        return "order-success";
     }
 }
