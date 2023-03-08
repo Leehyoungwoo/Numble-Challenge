@@ -64,4 +64,11 @@ public class ItemController {
         model.addAttribute("item", itemResponseDto);
         return "item-detail";
     }
+
+    @GetMapping("/api/search")
+    public String searchItem(@RequestParam("itemName") String itemName, Model model) {
+        List<ItemResponseDto> itemResponseDtos = itemService.searchItem(itemName);
+        model.addAttribute("items", itemResponseDtos);
+        return "searchItem-List";
+    }
 }
