@@ -4,11 +4,14 @@ import lombok.RequiredArgsConstructor;
 import numble.challenge.domain.model.entity.Item;
 import numble.challenge.item.controller.dto.ItemRequestSaveDto;
 import numble.challenge.item.controller.dto.ItemRequestUpdateDto;
+import numble.challenge.item.controller.dto.ItemResponseDto;
 import numble.challenge.item.repository.ItemRepository;
 import numble.challenge.item.service.ItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -46,5 +49,12 @@ public class ItemController {
     public String delete(@PathVariable Long ItemId) {
         itemService.delete(ItemId);
         return "redirect:/";
+    }
+
+    @GetMapping("/api/items")
+    public String findAllItem(Model model) {
+        List<ItemResponseDto> items = itemService.findAllItem();
+        model.addAttribute("items", items);
+        return "item-list";
     }
 }
