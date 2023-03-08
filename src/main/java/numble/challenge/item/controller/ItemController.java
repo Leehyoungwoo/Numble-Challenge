@@ -45,9 +45,9 @@ public class ItemController {
         return "redirect:/";
     }
 
-    @DeleteMapping("/api/item/{itemId}")
-    public String delete(@PathVariable Long ItemId) {
-        itemService.delete(ItemId);
+    @DeleteMapping("/api/item/{Id}")
+    public String delete(@PathVariable Long Id) {
+        itemService.delete(Id);
         return "redirect:/";
     }
 
@@ -56,5 +56,12 @@ public class ItemController {
         List<ItemResponseDto> items = itemService.findAllItem();
         model.addAttribute("items", items);
         return "item-list";
+    }
+
+    @GetMapping("/api/items/{id}")
+    public String getItemDetail(@PathVariable Long id, Model model) {
+        ItemResponseDto itemResponseDto = itemService.getItemDetail(id);
+        model.addAttribute("item", itemResponseDto);
+        return "item-detail";
     }
 }
