@@ -43,7 +43,7 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @PostMapping("/member/{id}/delete")
+    @DeleteMapping("/api/member/{memberId}")
     public String delete(@PathVariable("id") Long id) {
         memberService.withdraw(id);
         return "redirect:/";
