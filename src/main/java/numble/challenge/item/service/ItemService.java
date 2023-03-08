@@ -21,5 +21,5 @@ public interface ItemService {
 
     List<ItemResponseDto> searchItem(String itemName);
 
-    void orderItem();
+    void orderItem(Long itemId, Long memberId, int count);
 }
