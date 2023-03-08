@@ -8,10 +8,7 @@ import numble.challenge.item.repository.ItemRepository;
 import numble.challenge.item.service.ItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -42,6 +39,12 @@ public class ItemController {
     @PostMapping("/api/item/{id}/update")
     public String update(@PathVariable Long id, ItemRequestUpdateDto itemRequestUpdateDto) {
         itemService.update(id, itemRequestUpdateDto);
+        return "redirect:/";
+    }
+
+    @DeleteMapping("/api/item/{itemId}")
+    public String delete(@PathVariable Long ItemId) {
+        itemService.delete(ItemId);
         return "redirect:/";
     }
 }
