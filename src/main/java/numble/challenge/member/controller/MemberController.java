@@ -34,7 +34,7 @@ public class MemberController {
     public String updateForm(@PathVariable Long id, Model model) {
         Member member = memberRepository.findById(id).orElse(null);
         model.addAttribute("member", member);
-        return "update-form";
+        return "memberUpdate-form";
     }
 
     @PostMapping("/api/member/{id}/update")
