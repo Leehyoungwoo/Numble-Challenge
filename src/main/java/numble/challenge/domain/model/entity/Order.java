@@ -37,8 +37,4 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrdersStatus status;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 }

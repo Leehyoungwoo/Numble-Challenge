@@ -34,7 +34,7 @@ public class MemberController {
     public String updateForm(@PathVariable Long id, Model model) {
         Member member = memberRepository.findById(id).orElse(null);
         model.addAttribute("member", member);
-        return "update-form";
+        return "memberUpdate-form";
     }
 
     @PostMapping("/api/member/{id}/update")
@@ -43,7 +43,7 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @PostMapping("/member/{id}/delete")
+    @DeleteMapping("/api/member/{memberId}")
     public String delete(@PathVariable("id") Long id) {
         memberService.withdraw(id);
         return "redirect:/";
