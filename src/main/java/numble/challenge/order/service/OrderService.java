@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrderService {
 
-    Order createOrder(Long memberId, Long itemId, int count);
+    void createOrder(Long memberId, Long itemId, int count);
 
     void cancelOrder(Long orderId);
 
