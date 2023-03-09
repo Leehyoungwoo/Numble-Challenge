@@ -49,7 +49,8 @@ public class OrderServiceImpl implements OrderService {
     @Transactional(readOnly = false)
     @Override
     public List<Order> findAllOrder() {
-        return null;
+        List<Order> orders = orderRepository.findAll();
+        return orders;
     }
 
     @Transactional(readOnly = false)
