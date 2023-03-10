@@ -6,7 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Table(name = "ItemCart")
@@ -20,12 +21,14 @@ public class ItemCart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "memberId")
+    private Member member;
 
-    @NotNull
-    private Integer price;
-
-    @NotNull
-    private Integer quantity;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "itemCart_Item",
+    joinColumns = @JoinColumn(name = "itemCartId"))
+    @MapKeyJoinColumn(name = "itemId")
+    @Column(name = "count")
+    private Map<Item, Integer> items = new HashMap<>();
 }
