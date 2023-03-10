@@ -1,5 +1,6 @@
 package numble.challenge.order.service;
 
+import numble.challenge.domain.model.entity.ItemCart;
 import numble.challenge.domain.model.entity.Member;
 import numble.challenge.domain.model.entity.Order;
 
@@ -15,7 +16,7 @@ public interface OrderService {
 
     void addItemCart(Long cartId, Long memberId, Long itemId, int count);
 
-    void findItemCart();
+    ItemCart findItemCart(Long itemCartId);
 
     List<Member> findAllMemberByProduct(Long itemId);
 

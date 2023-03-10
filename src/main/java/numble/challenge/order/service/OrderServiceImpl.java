@@ -83,8 +83,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(readOnly = false)
     @Override
-    public void findItemCart() {
-
+    public ItemCart findItemCart(Long itemCartId) {
+        return itemCartRepository.findById(itemCartId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 장바구니입니다"));
     }
 
     @Transactional(readOnly = false)
