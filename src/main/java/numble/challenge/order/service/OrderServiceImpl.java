@@ -4,12 +4,15 @@ import numble.challenge.domain.model.entity.Item;
 import numble.challenge.domain.model.entity.Member;
 import numble.challenge.domain.model.entity.Order;
 import numble.challenge.item.repository.ItemRepository;
+import numble.challenge.itemCart.repository.ItemCartRepository;
 import numble.challenge.member.repository.MemberRepository;
 import numble.challenge.order.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -18,11 +21,13 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final ItemRepository itemRepository;
     private final MemberRepository memberRepository;
+    private final ItemCartRepository itemCartRepository;
 
-    public OrderServiceImpl(OrderRepository orderRepository, ItemRepository itemRepository, MemberRepository memberRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, ItemRepository itemRepository, MemberRepository memberRepository, ItemCartRepository itemCartRepository) {
         this.orderRepository = orderRepository;
         this.itemRepository = itemRepository;
         this.memberRepository = memberRepository;
+        this.itemCartRepository = itemCartRepository;
     }
 
     @Transactional(readOnly = false)
@@ -55,13 +60,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(readOnly = false)
     @Override
-    public void addCarTItem() {
+    public void addItemCart(Long itemCartId, Long memberId, Long itemId, int count) {
 
     }
 
     @Transactional(readOnly = false)
     @Override
-    public void findCartItem() {
+    public void findItemCart() {
 
     }
 
@@ -79,8 +84,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(readOnly = false)
     @Override
-    public List<Member> findAllCustomerByProduct() {
-        return null;
+    public List<Member> findAllMemberByProduct(Long itemId) {
+        return orderRepository.findMemberByItem(itemId);
     }
 
     private Order getOrder(int count, Member orderMember, Item OrderItem) {

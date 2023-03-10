@@ -13,14 +13,14 @@ public interface OrderService {
 
     List<Order> findAllOrder();
 
-    void addCarTItem();
+    void addItemCart(Long cartId, Long memberId, Long itemId, int count);
 
-    void findCartItem();
+    void findItemCart();
 
     void CustomerSupport();
 
     void writeReview();
 
-    List<Member> findAllCustomerByProduct();
+    List<Member> findAllMemberByProduct(Long itemId);
 
 }
