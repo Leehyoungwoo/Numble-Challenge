@@ -1,6 +1,7 @@
 package numble.challenge.order.service;
 
 import numble.challenge.domain.model.entity.Item;
+import numble.challenge.domain.model.entity.ItemCart;
 import numble.challenge.domain.model.entity.Member;
 import numble.challenge.domain.model.entity.Order;
 import numble.challenge.item.repository.ItemRepository;
@@ -61,24 +62,28 @@ public class OrderServiceImpl implements OrderService {
     @Transactional(readOnly = false)
     @Override
     public void addItemCart(Long itemCartId, Long memberId, Long itemId, int count) {
+        ItemCart itemCart = itemCartRepository.findById(itemCartId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 장바구니입니다."));
 
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+
+        Item item = itemRepository.findById(itemId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상품입니다"));
+
+        if (itemCart.getItems().containsKey(item)) {
+            int existCount = itemCart.getItems().get(item);
+            itemCart.getItems().put(item, existCount + count);
+        } else {
+            itemCart.getItems().put(item, count);
+        }
+
+        itemCartRepository.save(itemCart);
     }
 
     @Transactional(readOnly = false)
     @Override
     public void findItemCart() {
-
-    }
-
-    @Transactional(readOnly = false)
-    @Override
-    public void CustomerSupport() {
-
-    }
-
-    @Transactional(readOnly = false)
-    @Override
-    public void writeReview() {
 
     }
 

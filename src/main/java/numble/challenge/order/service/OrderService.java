@@ -17,10 +17,6 @@ public interface OrderService {
 
     void findItemCart();
 
-    void CustomerSupport();
-
-    void writeReview();
-
     List<Member> findAllMemberByProduct(Long itemId);
 
 }
