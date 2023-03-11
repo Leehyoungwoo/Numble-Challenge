@@ -5,10 +5,7 @@ import numble.challenge.domain.model.entity.Order;
 import numble.challenge.order.service.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +23,7 @@ public class OrderController {
 
     @PostMapping("/api/order/new")
     public String create(@RequestParam Long memberId, @RequestParam Long itemId, @RequestParam int count, Model model) {
-        orderService.createOrder(memberId,itemId,count);
+        orderService.createOrder(memberId, itemId, count);
         model.addAttribute("message", "주문이 완료되었습니다.");
         return "order-complete";
     }
@@ -43,4 +40,20 @@ public class OrderController {
         model.addAttribute("orders", orders);
         return "order-list";
     }
+
+    @PostMapping("/api/itemCart/{itemCartId}/add")
+    public String addItemCart(@PathVariable Long itemCartId,
+                              @RequestParam Long memberId,
+                              @RequestParam Long itemId,
+                              @RequestParam int count,
+                              Model model) {
+        try {
+            orderService.addItemCart(itemCartId, memberId, itemId, count);
+            model.addAttribute("message", "상품이 추가되었습니다");
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+        }
+        return "addItemCart-complete";
+    }
+
 }
