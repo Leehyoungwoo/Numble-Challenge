@@ -2,6 +2,7 @@ package numble.challenge.order.controller;
 
 import lombok.RequiredArgsConstructor;
 import numble.challenge.domain.model.entity.ItemCart;
+import numble.challenge.domain.model.entity.Member;
 import numble.challenge.domain.model.entity.Order;
 import numble.challenge.itemCart.repository.ItemCartRepository;
 import numble.challenge.order.service.OrderService;
@@ -62,8 +63,15 @@ public class OrderController {
     @GetMapping("/api/itemCart/{itemCartId}")
     public String findItemCart(@PathVariable Long itemCartId, Model model) {
         ItemCart itemCart = itemCartRepository.findById(itemCartId)
-                .orElseThrow(()-> new IllegalArgumentException("존재하지 않는 장바구니입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 장바구니입니다."));
         model.addAttribute("itemCart", itemCart);
         return "itemCart";
+    }
+
+    @GetMapping("api/member-by-item")
+    public String findAllMemberByItem(@RequestParam("itemId") Long itemId, Model model) {
+        List<Member> members = orderService.findAllMemberByProduct(itemId);
+        model.addAttribute("members", members);
+        return "member-by-item";
     }
 }
