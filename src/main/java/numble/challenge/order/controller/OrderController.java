@@ -1,7 +1,9 @@
 package numble.challenge.order.controller;
 
 import lombok.RequiredArgsConstructor;
+import numble.challenge.domain.model.entity.ItemCart;
 import numble.challenge.domain.model.entity.Order;
+import numble.challenge.itemCart.repository.ItemCartRepository;
 import numble.challenge.order.service.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+    private final ItemCartRepository itemCartRepository;
 
     @GetMapping("/api/order/new")
     public String createForm(Model model) {
@@ -56,4 +59,11 @@ public class OrderController {
         return "addItemCart-complete";
     }
 
+    @GetMapping("/api/itemCart/{itemCartId}")
+    public String findItemCart(@PathVariable Long itemCartId, Model model) {
+        ItemCart itemCart = itemCartRepository.findById(itemCartId)
+                .orElseThrow(()-> new IllegalArgumentException("존재하지 않는 장바구니입니다."));
+        model.addAttribute("itemCart", itemCart);
+        return "itemCart";
+    }
 }
