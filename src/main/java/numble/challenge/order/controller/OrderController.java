@@ -22,14 +22,14 @@ public class OrderController {
     @GetMapping("/api/order/new")
     public String createForm(Model model) {
         model.addAttribute("order", new Order());
-        return "orderForm";
+        return "order/orderForm";
     }
 
     @PostMapping("/api/order/new")
     public String create(@RequestParam Long memberId, @RequestParam Long itemId, @RequestParam int count, Model model) {
         orderService.createOrder(memberId, itemId, count);
         model.addAttribute("message", "주문이 완료되었습니다.");
-        return "order-complete";
+        return "order/order-complete";
     }
 
     @PostMapping("/api/order/{orderId}/cancel")
@@ -42,7 +42,7 @@ public class OrderController {
     public String findAllOrder(Model model) {
         List<Order> orders = orderService.findAllOrder();
         model.addAttribute("orders", orders);
-        return "order-list";
+        return "order/order-list";
     }
 
     @PostMapping("/api/itemCart/{itemCartId}/add")
@@ -57,7 +57,7 @@ public class OrderController {
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", e.getMessage());
         }
-        return "addItemCart-complete";
+        return "order/addItemCart-complete";
     }
 
     @GetMapping("/api/itemCart/{itemCartId}")
@@ -65,13 +65,13 @@ public class OrderController {
         ItemCart itemCart = itemCartRepository.findById(itemCartId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 장바구니입니다."));
         model.addAttribute("itemCart", itemCart);
-        return "itemCart";
+        return "order/itemCart";
     }
 
     @GetMapping("api/member-by-item")
     public String findAllMemberByItem(@RequestParam("itemId") Long itemId, Model model) {
         List<Member> members = orderService.findAllMemberByProduct(itemId);
         model.addAttribute("members", members);
-        return "member-by-item";
+        return "order/member-by-item";
     }
 }
