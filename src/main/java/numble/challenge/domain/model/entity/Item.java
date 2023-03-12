@@ -52,4 +52,8 @@ public class Item {
     public void sell() {
         this.quantity--;
     }
+
+    public void addStock() {
+        this.quantity++;
+    }
 }
