@@ -21,20 +21,20 @@ public class MemberController {
     @GetMapping("/api/member/sign-up/")
     public String signUpForm(Model model) {
         model.addAttribute("member", new Member());
-        return "sign-up-form";
+        return "member/sign-up-form";
     }
 
     @PostMapping("/auth/member")
     public String signUp(@RequestBody MemberSaveDto memberSaveDto) {
         memberService.join(Member.toEntity(memberSaveDto));
-        return "redirect: log-in-form";
+        return "redirect:member/log-in-form";
     }
 
     @GetMapping("/api/member/{id}/update")
     public String updateForm(@PathVariable Long id, Model model) {
         Member member = memberRepository.findById(id).orElse(null);
         model.addAttribute("member", member);
-        return "memberUpdate-form";
+        return "member/memberUpdate-form";
     }
 
     @PostMapping("/api/member/{id}/update")
@@ -52,6 +52,6 @@ public class MemberController {
     @PostMapping("/member/{id}/items")
     public String findItemByMember(@PathVariable("id") Long id, Model model) {
         model.addAttribute("items", memberService.findItemByMember(id));
-        return "member-itemList";
+        return "member/member-itemList";
     }
 }

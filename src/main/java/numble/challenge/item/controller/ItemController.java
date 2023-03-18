@@ -24,7 +24,7 @@ public class ItemController {
     @GetMapping("/api/item/save")
     public String saveForm(Model model) {
         model.addAttribute("item", new Item());
-        return "itemSave-form";
+        return "item/itemSave-form";
     }
 
     @PostMapping("/api/item/save")
@@ -37,7 +37,7 @@ public class ItemController {
     public String updateForm(@PathVariable Long id, Model model) {
         Item item = itemRepository.findById(id).orElse(null);
         model.addAttribute("item", item);
-        return "itemUpdate-form";
+        return "item/itemUpdate-form";
     }
 
     @PostMapping("/api/item/{id}/update")
@@ -56,21 +56,21 @@ public class ItemController {
     public String findAllItem(Model model) {
         List<ItemResponseDto> items = itemService.findAllItem();
         model.addAttribute("items", items);
-        return "item-list";
+        return "item/item-list";
     }
 
     @GetMapping("/api/items/{id}")
     public String getItemDetail(@PathVariable Long id, Model model) {
         ItemResponseDto itemResponseDto = itemService.getItemDetail(id);
         model.addAttribute("item", itemResponseDto);
-        return "item-detail";
+        return "item/item-detail";
     }
 
     @GetMapping("/api/search")
     public String searchItem(@RequestParam("itemName") String itemName, Model model) {
         List<ItemResponseDto> itemResponseDtos = itemService.searchItem(itemName);
         model.addAttribute("items", itemResponseDtos);
-        return "searchItem-List";
+        return "item/searchItem-List";
     }
 
     @PostMapping("/api/item/order")
@@ -83,10 +83,10 @@ public class ItemController {
             itemService.orderItem(itemId, memberId, count);
         } catch (NotEnoughStockException e ) {
             model.addAttribute("error", e.getMessage());
-            return "order-form";
+            return "item/order-form";
         }
 
         model.addAttribute("message", "주문이 완료되었습니다.");
-        return "order-success";
+        return "item/order-success";
     }
 }
